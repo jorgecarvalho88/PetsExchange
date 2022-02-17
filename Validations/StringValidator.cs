@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Validations
 {
-    public static class StringValidatior
+    public static class StringValidator
     {
         public static string? ValidateLength(string value, string property, int length)
         {
@@ -18,7 +18,7 @@ namespace Validations
             return null;
         }
 
-        public static string? ValidateIsNullOrWhiteSpace(string value, string? property)
+        public static string? ValidateIsNullOrWhiteSpace(string? value, string? property)
         {
             if (string.IsNullOrWhiteSpace(value))
             {
