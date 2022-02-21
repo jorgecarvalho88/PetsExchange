@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataExtension", "DataExtens
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientExtension", "ClientExtension\ClientExtension.csproj", "{148BD353-E627-40F2-A130-7C88A8794E57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserApiDto", "UserApiDto\UserApiDto.csproj", "{785C4F3E-27F9-485E-B4A6-ACF6D2CFEB20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserApiContract", "UserApiDto\UserApiContract.csproj", "{785C4F3E-27F9-485E-B4A6-ACF6D2CFEB20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationsUT", "ValidationsUT\ValidationsUT.csproj", "{BC88E7B9-0545-4C55-BD82-D8C57C61EC56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationsUT", "ValidationsUT\ValidationsUT.csproj", "{BC88E7B9-0545-4C55-BD82-D8C57C61EC56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PetsExchange.MainApi", "PetsExchange.MainApi", "{53C29307-6E6B-4974-9D07-EB9FE8641CCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,14 +24,14 @@ namespace UserApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult Add(UserDto user)
+        public IActionResult Add(UserContract user)
         {
             return Ok(_userService.Add(user));
         }
 
         [HttpPut]
         [Route("")]
-        public IActionResult Update(UserDto user)
+        public IActionResult Update(UserContract user)
         {
             return Ok(_userService.Update(user));
         }

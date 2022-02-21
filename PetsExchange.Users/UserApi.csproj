@@ -26,7 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ApiExtension\ApiExtension.csproj" />
     <ProjectReference Include="..\DataExtension\DataExtension.csproj" />
-    <ProjectReference Include="..\UserApiDto\UserApiDto.csproj" />
+    <ProjectReference Include="..\UserApiDto\UserApiContract.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,13 +2,13 @@
 
 namespace UserApiDto
 {
-    public class UserDto : ValidationBase
+    public class UserContract : ValidationBase
     {
-        public UserDto()
+        public UserContract()
         {
         }
 
-        public UserDto(Guid uniqueId, string name, string email, List<string> errors)
+        public UserContract(Guid uniqueId, string name, string email, List<string> errors)
         {
             Name = name;
             Email = email;

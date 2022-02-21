@@ -4,9 +4,9 @@ namespace UserApi.Service
 {
     public interface IUserService
     {
-        UserDto Get(Guid uniqueId);
-        UserDto Add(UserDto user);
-        UserDto Update(UserDto user);
-        UserDto Delete(Guid uniqueId);
+        UserContract Get(Guid uniqueId);
+        UserContract Add(UserContract user);
+        UserContract Update(UserContract user);
+        UserContract Delete(Guid uniqueId);
     }
 }
