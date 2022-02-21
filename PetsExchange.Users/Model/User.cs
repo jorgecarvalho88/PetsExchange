@@ -28,7 +28,7 @@ namespace UserApi.Model
 
         public void SetEmail(string email)
         {
-            var error = EmailValidatior.Validate(email);
+            var error = EmailValidatior.IsValidEmail(email);
             if (error != null)
             {
                 this.Errors.Add(error);

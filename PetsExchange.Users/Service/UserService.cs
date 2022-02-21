@@ -50,15 +50,6 @@ namespace UserApi.Service
             return user;
         }
 
-        private UserDto ConvertToApiContractCart(User user)
-        {
-            if (user == null)
-            {
-                return new UserDto() { Errors = new List<string>() { "User not found" } };
-            }
-            return new UserDto(user.UniqueId, user.Name, user.Email, user.Errors);
-        }
-
         public UserDto Update(UserDto user)
         {
             _userRepository.BeginTransaction();
@@ -86,5 +77,39 @@ namespace UserApi.Service
             _userRepository.CommitTransaction();
             return user;
         }
+
+        public UserDto Delete(Guid uniqueId)
+        {
+            _userRepository.BeginTransaction();
+
+            var existingUser = _userRepository.Get(uniqueId);
+            if( existingUser is null)
+            {
+                _userRepository.RollBackTransaction();
+                return new UserDto()
+                {
+                    Errors = new List<string>() { "Invalid UniqueId" }
+                };
+            }
+
+            var user = ConvertToApiContractCart(existingUser);
+
+            _userRepository.Delete(existingUser);
+            _userRepository.Commit();
+            _userRepository.CommitTransaction();
+            return user;
+        }
+
+
+        #region Methods
+        private UserDto ConvertToApiContractCart(User user)
+        {
+            if (user == null)
+            {
+                return new UserDto() { Errors = new List<string>() { "User not found" } };
+            }
+            return new UserDto(user.UniqueId, user.Name, user.Email, user.Errors);
+        }
+        #endregion
     }
 }

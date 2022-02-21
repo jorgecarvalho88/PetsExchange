@@ -35,5 +35,12 @@ namespace UserApi.Controllers
         {
             return Ok(_userService.Update(user));
         }
+
+        [HttpDelete]
+        [Route("")]
+        public IActionResult Delete(Guid uniqueId)
+        {
+            return Ok(_userService.Delete(uniqueId));
+        }
     }
 }
