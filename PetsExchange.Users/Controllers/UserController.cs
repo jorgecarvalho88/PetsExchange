@@ -28,5 +28,12 @@ namespace UserApi.Controllers
         {
             return Ok(_userService.Add(user));
         }
+
+        [HttpPut]
+        [Route("")]
+        public IActionResult Update(UserDto user)
+        {
+            return Ok(_userService.Update(user));
+        }
     }
 }

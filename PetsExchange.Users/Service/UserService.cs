@@ -58,5 +58,33 @@ namespace UserApi.Service
             }
             return new UserDto(user.UniqueId, user.Name, user.Email, user.Errors);
         }
+
+        public UserDto Update(UserDto user)
+        {
+            _userRepository.BeginTransaction();
+
+            var existingUser = _userRepository.Get(user.UniqueId);
+            if(existingUser is null)
+            {
+                _userRepository.RollBackTransaction();
+                user.Errors.Add("Invalid UniqueId");
+                return user;
+            }
+
+            existingUser.SetName(user.Name);
+            existingUser.SetEmail(user.Email);
+
+            if(!existingUser.IsValid)
+            {
+                _userRepository.RollBackTransaction();
+                user.Errors.AddRange(existingUser.Errors);
+                return user;
+            }
+
+            _userRepository.Update(existingUser);
+            _userRepository.Commit();
+            _userRepository.CommitTransaction();
+            return user;
+        }
     }
 }

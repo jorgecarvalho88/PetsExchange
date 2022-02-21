@@ -41,7 +41,7 @@ namespace UserApi.Model
 
         private void ValidateLength(string value, string property, int length)
         {
-            var error = StringValidatior.ValidateLength(value, property, length);
+            var error = StringValidator.ValidateLength(value, property, length);
             if (error != null)
             {
                 this.Errors.Add(error);
@@ -50,7 +50,7 @@ namespace UserApi.Model
 
         private void ValidateIsNullOrWhiteSpace(string value, string property)
         {
-            var error = StringValidatior.ValidateIsNullOrWhiteSpace(value, property);
+            var error = StringValidator.ValidateIsNullOrWhiteSpace(value, property);
             if (error != null)
             {
                 this.Errors.Add(error);
