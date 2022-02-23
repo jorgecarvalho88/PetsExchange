@@ -1,6 +1,6 @@
 ﻿using UserApi.Infrastructure.User;
 using UserApi.Model;
-using UserApiDto;
+using UserApiContract;
 
 namespace UserApi.Service
 {

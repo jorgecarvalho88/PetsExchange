@@ -1,7 +1,7 @@
 ﻿using ApiExtension;
 using Microsoft.AspNetCore.Mvc;
 using UserApi.Service;
-using UserApiDto;
+using UserApiContract;
 
 namespace UserApi.Controllers
 {

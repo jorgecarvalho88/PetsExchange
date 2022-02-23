@@ -1,4 +1,4 @@
-﻿using UserApiDto;
+﻿using UserApiContract;
 
 namespace UserApi.Service
 {

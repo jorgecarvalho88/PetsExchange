@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Newtonsoft.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace ClientExtension
@@ -20,9 +21,9 @@ namespace ClientExtension
 
         protected StringContent Content(object contentObject)
         {
-            return new StringContent(JsonSerializer.Serialize(contentObject), Encoding.UTF8, "application/json");
+            //return new StringContent(JsonSerializer.Serialize(contentObject), Encoding.UTF8, "application/json");
 
-            //return new StringContent(JsonConvert.SerializeObject(contentObject), Encoding.UTF8, "application/json");
+            return new StringContent(JsonConvert.SerializeObject(contentObject), Encoding.UTF8, "application/json");
         }
 
         protected async Task<ResponseResult<T>> HttpRequest<T>(HttpRequestMessage requestMessage)
@@ -33,9 +34,9 @@ namespace ClientExtension
 
                 CreateClient();
 
-                return new ResponseResult<T>(JsonSerializer.Deserialize<T>(httpContent), httpResponse);
+                //return new ResponseResult<T>(JsonSerializer.Deserialize<T>(httpContent), httpResponse);
 
-                //return new ResponseResult<T>(JsonConvert.DeserializeObject<T>(httpContent), httpResponse);
+                return new ResponseResult<T>(JsonConvert.DeserializeObject<T>(httpContent), httpResponse);
             }
         }
     }

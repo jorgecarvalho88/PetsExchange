@@ -1,7 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using UserApi.Infrastructure;
-using UserApi.Infrastructure.User;
-using UserApi.Service;
+using PetsExchangeApi.Service.User;
+using UserApiClient; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddTransient<IUserApiClient, UserApiClient.UserApiClient>();
 builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient((ctx) =>
-{
-    return new UserDbContext(builder.Configuration.GetSection("ConnectionStrings:sqlConnection").Value);
-});
 
 var app = builder.Build();
 
@@ -33,10 +27,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
-{
-    serviceScope.ServiceProvider.GetRequiredService<UserDbContext>().Database.Migrate();
-}
 
 app.Run();

@@ -12,7 +12,7 @@ namespace ValidationsUT
             var email = "jorge@gmail.com";
 
             //Act
-            var result = EmailValidatior.Validate(email);  
+            var result = EmailValidatior.IsValidEmail(email);  
 
             //Acert
             Assert.Null(result);
