@@ -1,6 +1,7 @@
 ﻿using PetsExchangeApi.DTO;
 using PetsExchangeApi.Extensions;
 using UserApiClient;
+using UserApiContract;
 
 namespace PetsExchangeApi.Service.User
 {
@@ -22,6 +23,36 @@ namespace PetsExchangeApi.Service.User
             }
 
             return null;
+        }
+
+        public async Task<UserDto> Add(UserDto user)
+        {
+            if(user.IsValid)
+            {
+                var newUser = (await _userApiClient.CreateUser(
+                    new UserContract(user.UniqueId, user.Name, user.Email, user.Errors))).Body;
+                user.Errors.AddRange(newUser.Errors);
+                user.UniqueId = newUser.UniqueId;
+            }
+
+            return user;
+        }
+
+        public async Task<UserDto> Update(UserDto user)
+        {
+            var updatedUser = (await _userApiClient.UpdateUser(
+                new UserContract(user.UniqueId, user.Name, user.Email, user.Errors))).Body;
+            user.Errors.AddRange(updatedUser.Errors);
+            user.UniqueId = updatedUser.UniqueId;
+
+            return user;
+        }
+
+        public async Task<UserDto> Delete(Guid uniqueId)
+        {
+            var deletedUser = (await _userApiClient.DeleteUser(uniqueId)).Body;
+
+            return new UserDto(deletedUser.UniqueId, deletedUser.Name, deletedUser.Email, deletedUser.Errors);
         }
     }
 }

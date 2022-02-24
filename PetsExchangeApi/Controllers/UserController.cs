@@ -1,5 +1,6 @@
 ﻿using ApiExtension;
 using Microsoft.AspNetCore.Mvc;
+using PetsExchangeApi.DTO;
 using PetsExchangeApi.Service.User;
 
 namespace PetsExchangeApi.Controllers
@@ -20,6 +21,27 @@ namespace PetsExchangeApi.Controllers
         public async Task<IActionResult> Get(Guid uniqueId)
         {
             return Ok(await _userService.Get(uniqueId));
+        }
+
+        [HttpPost]
+        [Route("User")]
+        public async Task<IActionResult> Add(UserDto user)
+        {
+            return Ok(await _userService.Add(user));
+        }
+
+        [HttpPut]
+        [Route("User")]
+        public async Task<IActionResult> Update(UserDto user)
+        {
+            return Ok(await _userService.Update(user));
+        }
+
+        [HttpDelete]
+        [Route("User{uniqueId}")]
+        public async Task<IActionResult> Delete(Guid uniqueId)
+        {
+            return Ok(await _userService.Delete(uniqueId));
         }
     }
 }
