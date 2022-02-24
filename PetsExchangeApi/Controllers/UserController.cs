@@ -17,28 +17,28 @@ namespace PetsExchangeApi.Controllers
         }
 
         [HttpGet]
-        [Route("/{uniqueId}")]
+        [Route("{uniqueId}")]
         public async Task<IActionResult> Get(Guid uniqueId)
         {
             return Ok(await _userService.Get(uniqueId));
         }
 
         [HttpPost]
-        [Route("User")]
+        [Route("")]
         public async Task<IActionResult> Add(UserDto user)
         {
             return Ok(await _userService.Add(user));
         }
 
         [HttpPut]
-        [Route("User")]
+        [Route("")]
         public async Task<IActionResult> Update(UserDto user)
         {
             return Ok(await _userService.Update(user));
         }
 
         [HttpDelete]
-        [Route("User{uniqueId}")]
+        [Route("{uniqueId}")]
         public async Task<IActionResult> Delete(Guid uniqueId)
         {
             return Ok(await _userService.Delete(uniqueId));
