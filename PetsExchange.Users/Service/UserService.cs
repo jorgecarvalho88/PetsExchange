@@ -17,6 +17,11 @@ namespace UserApi.Service
             return ConvertToApiContractCart(_userRepository.Get(uniqueId));
         }
 
+        public UserContract Get(string email)
+        {
+            return ConvertToApiContractCart(_userRepository.Get(email));
+        }
+
         public UserContract Add(UserContract user)
         {
             _userRepository.BeginTransaction();

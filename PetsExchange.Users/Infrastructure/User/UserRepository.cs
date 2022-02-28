@@ -12,7 +12,7 @@ namespace UserApi.Infrastructure.User
             return base.GetQueryable<Model.User>();
         }
 
-        public Model.User? Get(string email)
+        public Model.User Get(string email)
         {
             return Get().Where(s => s.Email == email).FirstOrDefault();
         }
