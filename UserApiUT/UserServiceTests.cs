@@ -13,6 +13,8 @@ namespace UserApiUT
     public class UserServiceTests
     {
         private User testUser = new User("Jorge", "jorge@gmail.com");
+        private User invalidTestUser = new User("Jorge", "jorge.com");
+        private UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "jorge.com", new List<string>());
         private UserContract testUserContract = new UserContract(new Guid(), "Jorge", "jorge@gmail.com", new List<string>());
         private Mock<IUserRepository> _userRepository;
         public UserServiceTests()
@@ -101,6 +103,24 @@ namespace UserApiUT
         }
 
         [Fact]
+        public void AddUser_WithInvalidUser_ReturnsBadRequest()
+        {
+            //Arrange
+            _userRepository.Setup(s => s.Get(It.IsAny<Guid>())).Returns((User)null);
+            _userRepository.Setup(s => s.Create(It.IsAny<User>())).Verifiable();
+
+            //Act 
+            var userService = new UserService(_userRepository.Object);
+            var result = userService.Add(invalidUserContract);
+
+            //Assert
+            _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
+            _userRepository.Verify(s => s.RollBackTransaction(), Times.Once());
+
+            Assert.False(invalidUserContract.IsValid);
+        }
+
+        [Fact]
         public void AddUser_WithExistingUser_ReturnsBadRequest()
         {
             //Arrange
@@ -115,6 +135,102 @@ namespace UserApiUT
             _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
             _userRepository.Verify(s => s.RollBackTransaction(), Times.Once());
 
+            Assert.Equal(errorMessage, result.Errors.First());
+        }
+
+        [Fact]
+        public void UpdateUser_WithValidUser_ReturnsOk()
+        {
+            //Arrange
+            _userRepository.Setup(s => s.Get(It.IsAny<Guid>())).Returns(testUser);
+
+            //Act 
+            var userService = new UserService(_userRepository.Object);
+            var result = userService.Update(testUserContract);
+
+            //Assert
+            _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
+            _userRepository.Verify(s => s.Update(It.IsAny<User>()), Times.Once());
+            _userRepository.Verify(s => s.Commit(), Times.Once());
+            _userRepository.Verify(s => s.CommitTransaction(), Times.Once());
+            
+            Assert.True(result.IsValid);
+        }
+
+        [Fact]
+        public void UpdateUser_WithUnexistingUser_ReturnsBadRequest()
+        {
+            //Arrange
+            var errorMessage = "Invalid UniqueId";
+            _userRepository.Setup(s => s.Get(It.IsAny<Guid>())).Returns((User)null);
+
+            //Act 
+            var userService = new UserService(_userRepository.Object);
+            var result = userService.Update(testUserContract);
+
+            //Assert
+            _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
+            _userRepository.Verify(s => s.RollBackTransaction(), Times.Once());
+
+            //Assert
+            Assert.Equal(errorMessage, result.Errors.First());
+        }
+
+        [Fact]
+        public void UpdateUser_NotValidUser_ReturnsBadRequest()
+        {
+            //Arrange
+            var errorMessage = "Email is Invalid";
+            _userRepository.Setup(s => s.Get(It.IsAny<Guid>())).Returns(testUser);
+
+            //Act 
+            var userService = new UserService(_userRepository.Object);
+            var result = userService.Update(invalidUserContract);
+
+            //Assert
+            _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
+            _userRepository.Verify(s => s.RollBackTransaction(), Times.Once());
+
+            //Assert
+            Assert.False(result.IsValid);
+            Assert.Equal(errorMessage, result.Errors.First());
+        }
+
+        [Fact]
+        public void DeleteUser_WithValidUser_ReturnsOk()
+        {
+            //Arrange
+            _userRepository.Setup(s => s.Get(It.IsAny<Guid>())).Returns(testUser);
+
+            //Act 
+            var userService = new UserService(_userRepository.Object);
+            var result = userService.Delete(testUserContract.UniqueId);
+
+            //Assert
+            _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
+            _userRepository.Verify(s => s.Delete(It.IsAny<User>()), Times.Once());
+            _userRepository.Verify(s => s.Commit(), Times.Once());
+            _userRepository.Verify(s => s.CommitTransaction(), Times.Once());
+
+            Assert.True(result.IsValid);
+        }
+
+        [Fact]
+        public void DeleteUser_WithUnexistingUser_ReturnsBadRequest()
+        {
+            //Arrange
+            var errorMessage = "Invalid UniqueId";
+            _userRepository.Setup(s => s.Get(It.IsAny<Guid>())).Returns((User)null);
+
+            //Act 
+            var userService = new UserService(_userRepository.Object);
+            var result = userService.Delete(testUserContract.UniqueId);
+
+            //Assert
+            _userRepository.Verify(s => s.BeginTransaction(), Times.Once());
+            _userRepository.Verify(s => s.RollBackTransaction(), Times.Once());
+
+            //Assert
             Assert.Equal(errorMessage, result.Errors.First());
         }
     }
