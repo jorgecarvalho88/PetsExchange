@@ -14,10 +14,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient((ctx) =>
-{
-    return new UserDbContext(builder.Configuration.GetSection("ConnectionStrings:sqlConnection").Value);
-});
+builder.Services.AddDbContext<UserDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:sqlConnection").Value));
+//builder.Services.AddTransient((ctx) =>
+//{
+//    return new UserDbContext(builder.Configuration.GetSection("ConnectionStrings:sqlConnection").Value);
+//});
 
 var app = builder.Build();
 

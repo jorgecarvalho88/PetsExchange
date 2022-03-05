@@ -12,11 +12,11 @@ namespace UserApiUT
 {
     public class UserServiceTests
     {
-        private User testUser = new User("Jorge", "jorge@gmail.com");
-        private User invalidTestUser = new User("Jorge", "jorge.com");
-        private UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "jorge.com", new List<string>());
-        private UserContract testUserContract = new UserContract(new Guid(), "Jorge", "jorge@gmail.com", new List<string>());
-        private Mock<IUserRepository> _userRepository;
+        private readonly User testUser = new User("Jorge", "jorge@gmail.com");
+        private readonly User invalidTestUser = new User("Jorge", "jorge.com");
+        private readonly UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "jorge.com", new List<string>());
+        private readonly UserContract testUserContract = new UserContract(new Guid(), "Jorge", "jorge@gmail.com", new List<string>());
+        private readonly Mock<IUserRepository> _userRepository;
         public UserServiceTests()
         {
             _userRepository = new Mock<IUserRepository>();
