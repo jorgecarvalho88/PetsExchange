@@ -18,6 +18,13 @@ namespace UserApi.Model
 
         public string Name { get; protected set; }
         public string Email { get; protected set; }
+        //public string FirstName { get; set; }
+        //public string LastName { get; set; }
+        //public DateTime DateOfBirth { get; set; }
+        //public string Address { get; set; }
+        //public string Gender { get; set; }
+        //public int MobileNumber { get; set; }
+        //public string Country { get; set; }
 
         public void SetName(string name)
         {
