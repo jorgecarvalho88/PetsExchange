@@ -35,7 +35,7 @@ namespace UserApiClient
 
         public async Task<ResponseResult<UserContract>> DeleteUser(Guid userId)
         {
-            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, _uri + "/" + userId.ToString());
+            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, _uri + "?uniqueId=" + userId.ToString());
             return await HttpRequest<UserContract>(requestMessage);
         }
     }

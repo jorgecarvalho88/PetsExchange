@@ -36,7 +36,7 @@ namespace UserApi.Service
             }
 
             //create new user
-            var newUser = new User(user.Name, user.Email);
+            var newUser = new User(user.FirstName, user.LastName, user.Email, user.Password);
 
             //validate data is valid
             if (newUser.IsValid)
@@ -67,7 +67,8 @@ namespace UserApi.Service
                 return user;
             }
 
-            existingUser.SetName(user.Name);
+            existingUser.SetName(user.FirstName, user.LastName);
+            existingUser.SetPasswordHash(user.Password);
             existingUser.SetEmail(user.Email);
 
             if(!existingUser.IsValid)
@@ -113,7 +114,7 @@ namespace UserApi.Service
             {
                 return new UserContract() { Errors = new List<string>() { "User not found" } };
             }
-            return new UserContract(user.UniqueId, user.Name, user.Email, user.Errors);
+            return new UserContract(user.UniqueId, user.FirstName, user.LastName, user.PasswordHash, user.Email, user.Errors);
         }
         #endregion
     }

@@ -12,7 +12,7 @@ namespace UserApiUT
     public class UserRepositoryTests
     {
         private readonly UserDbContext context;
-        private User testUser = new User("Jorge", "jorge@mail.com");
+        private User testUser = new User("Jorge", "Carvalho", "jorge@mail.com", "12345");
         public UserRepositoryTests()
         {
             DbContextOptionsBuilder dbOptions = new DbContextOptionsBuilder().UseInMemoryDatabase(
@@ -79,14 +79,14 @@ namespace UserApiUT
 
             //Act 
             testUser.SetEmail("jbc@mail.com");
-            testUser.SetName("Jorge Carvalho");
+            testUser.SetName("Jorge","Carvalho");
             userRepository.Update(testUser);
             userRepository.Commit();
             userRepository.CommitTransaction();
             var result = userRepository.Get(testUser.UniqueId);
 
             //Assert
-            Assert.Equal(result.Name, testUser.Name);
+            Assert.Equal(result.FirstName, testUser.FirstName);
             Assert.Equal(result.Email, testUser.Email);
         }
 

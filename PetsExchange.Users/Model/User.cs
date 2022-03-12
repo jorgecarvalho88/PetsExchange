@@ -10,20 +10,29 @@ namespace UserApi.Model
         public User()
         { }
 
-        public User(string name, string email)
+        public User(string firstName, string lastName, string email, string password)
         {
-            SetName(name);
+            SetName(firstName, lastName);
             SetEmail(email);
+            SetPasswordHash(password);
         }
 
-        public string Name { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
         public string Email { get; protected set; }
+        public string PasswordHash { get; protected set; }
+        public bool ConfirmedEmail { get; protected set; }
 
-        public void SetName(string name)
+        public void SetName(string firstName, string lastName)
         {
-            ValidateIsNullOrWhiteSpace(name, "name");
-            ValidateLength(name, "name", 50);
-            Name = name;
+            ValidateIsNullOrWhiteSpace(firstName, "firstName");
+            ValidateIsNullOrWhiteSpace(lastName, "lastName");
+
+            ValidateLength(firstName, "firstName", 50);
+            ValidateLength(lastName, "lastName", 50);
+
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public void SetEmail(string email)
@@ -37,6 +46,23 @@ namespace UserApi.Model
             ValidateLength(email, "email", 50);
 
             Email = email;
+        }
+
+        public void SetPasswordHash(string password)
+        {
+            ValidateIsNullOrWhiteSpace(password, "password");
+            var passwordHash = Validations.PasswordValidator.GeneratePassword(password);
+            if(string.IsNullOrWhiteSpace(passwordHash))
+            {
+                this.Errors.Add("Error, try a different password");
+            }
+
+            PasswordHash = passwordHash;
+        }
+
+        public void SetConfirmedEmail(bool isConfirmed)
+        {
+            ConfirmedEmail = isConfirmed;
         }
 
         private void ValidateLength(string value, string property, int length)

@@ -22,10 +22,10 @@ namespace UserApi.Infrastructure
 
         }
 
-        public UserDbContext(DbContextOptions<UserDbContext> options) :base(options)
-        {
+        //public UserDbContext(DbContextOptions<UserDbContext> options) :base(options)
+        //{
 
-        }
+        //}
 
         public DbSet<Model.User> Users => Set<Model.User>();
 

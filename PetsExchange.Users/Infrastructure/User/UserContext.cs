@@ -12,11 +12,19 @@ namespace UserApi.Infrastructure.User
 
             modelBuilder.Entity<Model.User>(entity =>
             {
-                entity.Property(o => o.Name).IsRequired().HasMaxLength(50);
+                entity.Property(o => o.FirstName).IsRequired().HasMaxLength(50);
+                entity.Property(o => o.LastName).IsRequired().HasMaxLength(50);
                 entity.Property(o => o.Email).IsRequired().HasMaxLength(50);
                 entity.Property(o => o.Id).IsRequired();
                 entity.Property(o => o.UniqueId).IsRequired();
+                entity.Property(o => o.PasswordHash).IsRequired();
+                entity.Property(o => o.ConfirmedEmail).IsRequired().HasDefaultValue(0);
+
+                entity.HasIndex(u => u.UniqueId).IsUnique();
+                entity.HasIndex(u => u.Email).IsUnique();
             });
+
+            
         }
     }
 }

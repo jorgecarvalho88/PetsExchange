@@ -30,7 +30,7 @@ namespace PetsExchangeApi.Service.User
             if(user.IsValid)
             {
                 var newUser = (await _userApiClient.CreateUser(
-                    new UserContract(user.UniqueId, user.Name, user.Email, user.Errors))).Body;
+                    new UserContract(user.UniqueId, user.FirstName, user.LastName, user.Password, user.Email, user.Errors))).Body;
                 user.Errors.AddRange(newUser.Errors);
                 user.UniqueId = newUser.UniqueId;
             }
@@ -41,7 +41,7 @@ namespace PetsExchangeApi.Service.User
         public async Task<UserDto> Update(UserDto user)
         {
             var updatedUser = (await _userApiClient.UpdateUser(
-                new UserContract(user.UniqueId, user.Name, user.Email, user.Errors))).Body;
+                new UserContract(user.UniqueId, user.FirstName, user.LastName, user.Password, user.Email, user.Errors))).Body;
             user.Errors.AddRange(updatedUser.Errors);
             user.UniqueId = updatedUser.UniqueId;
 
@@ -52,7 +52,7 @@ namespace PetsExchangeApi.Service.User
         {
             var deletedUser = (await _userApiClient.DeleteUser(uniqueId)).Body;
 
-            return new UserDto(deletedUser.UniqueId, deletedUser.Name, deletedUser.Email, deletedUser.Errors);
+            return new UserDto(deletedUser.UniqueId, deletedUser.FirstName, deletedUser.LastName, deletedUser.Password, deletedUser.Email, deletedUser.Errors);
         }
     }
 }

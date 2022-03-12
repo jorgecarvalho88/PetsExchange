@@ -12,10 +12,10 @@ namespace UserApiUT
 {
     public class UserServiceTests
     {
-        private readonly User testUser = new User("Jorge", "jorge@gmail.com");
-        private readonly User invalidTestUser = new User("Jorge", "jorge.com");
-        private readonly UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "jorge.com", new List<string>());
-        private readonly UserContract testUserContract = new UserContract(new Guid(), "Jorge", "jorge@gmail.com", new List<string>());
+        private readonly User testUser = new User("Jorge", "Carvalho", "jorge@gmail.com", "12345");
+        private readonly User invalidTestUser = new User("Jorge", "Carvalho", "jorge.com", "12345");
+        private readonly UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "Carvalho", "12345", "jorge.com", new List<string>());
+        private readonly UserContract testUserContract = new UserContract(new Guid(), "Jorge", "Carvalho", "12345", "jorge@gmail.com", new List<string>());
         private readonly Mock<IUserRepository> _userRepository;
         public UserServiceTests()
         {
@@ -33,7 +33,7 @@ namespace UserApiUT
             var result = userService.Get(testUser.UniqueId);
 
             //Assert
-            Assert.Equal(testUser.Name, result.Name);
+            Assert.Equal(testUser.FirstName, result.FirstName);
             Assert.Equal(testUser.Email, result.Email);
         }
 
@@ -63,7 +63,7 @@ namespace UserApiUT
             var result = userService.Get(testUser.Email);
 
             //Assert
-            Assert.Equal(testUser.Name, result.Name);
+            Assert.Equal(testUser.FirstName, result.FirstName);
             Assert.Equal(testUser.Email, result.Email);
         }
 

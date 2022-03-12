@@ -8,15 +8,20 @@ namespace UserApiContract
         {
         }
 
-        public UserContract(Guid uniqueId, string name, string email, List<string> errors)
+        public UserContract(Guid uniqueId, string firstName, string lastName, string password, string email, List<string> errors)
         {
-            Name = name;
+            FirstName = firstName;
+            LastName = firstName;
+            Password = password;
             Email = email;
             Errors = errors;
             UniqueId = uniqueId;
         }
         public Guid UniqueId { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

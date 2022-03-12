@@ -12,7 +12,7 @@ namespace PetsExchangeApi.Extensions
                 return null;
             }
 
-            return new UserDto(user.UniqueId, user.Name, user.Email, user.Errors);
+            return new UserDto(user.UniqueId, user.FirstName, user.LastName, user.Password, user.Email, user.Errors);
         }
     }
 }
