@@ -11,7 +11,7 @@ namespace UserApiContract
         public UserContract(Guid uniqueId, string firstName, string lastName, string password, string email, List<string> errors)
         {
             FirstName = firstName;
-            LastName = firstName;
+            LastName = lastName;
             Password = password;
             Email = email;
             Errors = errors;
