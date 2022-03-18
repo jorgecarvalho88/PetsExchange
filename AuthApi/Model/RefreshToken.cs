@@ -9,7 +9,7 @@ namespace AuthApi.Model
         { }
 
         public RefreshToken(
-            Guid userId,
+            string userId,
             string jwtId
             )
         {
@@ -20,7 +20,7 @@ namespace AuthApi.Model
             SetExpDate();
         }
 
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public string Token { get; set; }
         public string JwtId { get; set; }
         public bool IsUsed { get; set; }
@@ -48,7 +48,7 @@ namespace AuthApi.Model
             Token = RandomString(35) + Guid.NewGuid();
         }
 
-        private void SetUserId(Guid userId)
+        private void SetUserId(string userId)
         {
             UserId = userId;
         }

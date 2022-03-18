@@ -1,10 +1,11 @@
 ﻿using AuthApiContract;
+using Microsoft.AspNetCore.Identity;
 
 namespace AuthApi.Service.RefreshToken
 {
     public interface IRefreshTokenService
     {
-        RefreshTokenApiContract Get(string refreshToken);
-        RefreshTokenApiContract Add(RefreshTokenApiContract refreshToken);
+        AuthResultApiContract GenerateJwtToken(IdentityUser user);
+        AuthResultApiContract VerifyRefreshToken(AuthResultApiContract authResult);
     }
 }
