@@ -12,10 +12,10 @@ namespace UserApiUT
 {
     public class UserServiceTests
     {
-        private readonly User testUser = new User("Jorge", "Carvalho", "jorge@gmail.com", "12345");
-        private readonly User invalidTestUser = new User("Jorge", "Carvalho", "jorge.com", "12345");
-        private readonly UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "Carvalho", "12345", "jorge.com", new List<string>());
-        private readonly UserContract testUserContract = new UserContract(new Guid(), "Jorge", "Carvalho", "12345", "jorge@gmail.com", new List<string>());
+        private User testUser = new User("Jorge", "Carvalho", "jorge@mail.com", null, "Rua de cima", 4715011, "Braga", Convert.ToDateTime("30/10/1988"), null, null);
+        private User invalidTestUser = new User("Jorge", "Carvalho", "jorge.com", null, "Rua de cima", 47150, "Braga", Convert.ToDateTime("30/10/1988"), null, null);
+        private readonly UserContract invalidUserContract = new UserContract(new Guid(), "Jorge", "Carvalho", "jorge.com", null, "Rua de cima", 4715011, "Braga", Convert.ToDateTime("30/10/1988"), null, null, new List<string>());
+        private readonly UserContract testUserContract = new UserContract(new Guid(), "Jorge", "Carvalho", "jorge@mail.com", null, "Rua de cima", 4715011, "Braga", Convert.ToDateTime("30/10/1988"), null, null, new List<string>());
         private readonly Mock<IUserRepository> _userRepository;
         public UserServiceTests()
         {
@@ -153,7 +153,7 @@ namespace UserApiUT
             _userRepository.Verify(s => s.Update(It.IsAny<User>()), Times.Once());
             _userRepository.Verify(s => s.Commit(), Times.Once());
             _userRepository.Verify(s => s.CommitTransaction(), Times.Once());
-            
+
             Assert.True(result.IsValid);
         }
 

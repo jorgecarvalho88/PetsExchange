@@ -42,3 +42,5 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().Create
 }
 
 app.Run();
+
+public partial class Program { }

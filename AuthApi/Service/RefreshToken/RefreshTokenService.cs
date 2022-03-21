@@ -148,7 +148,7 @@ namespace AuthApi.Service.RefreshToken
                 }
 
                 // update current token to be revoked before updating to a new one
-                storedToken.IsUsed = true;
+                storedToken.SetIsUsed();
                 _refreshTokenRepository.Update(storedToken);
 
                 // get user logged in e criar novo token com refresh token
@@ -181,7 +181,7 @@ namespace AuthApi.Service.RefreshToken
                 _refreshTokenRepository.Commit();
                 _refreshTokenRepository.CommitTransaction();
 
-                refreshToken.Token = newRefreshToken.Token;
+                refreshToken.SetToken(newRefreshToken.Token);
             }
             else
             {

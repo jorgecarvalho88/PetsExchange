@@ -10,26 +10,46 @@ namespace UserApi.Model
         public User()
         { }
 
-        public User(string firstName, string lastName, string email, string password)
+        public User(string firstName, 
+            string lastName, 
+            string email, 
+            int? mobileNumber, 
+            string address, 
+            int postCode, 
+            string city, 
+            DateTime dateOfBirth,
+            string? sitterProfileId,
+            string? profilePhotoUrl)
         {
             SetName(firstName, lastName);
             SetEmail(email);
-            SetPasswordHash(password);
+            SetMobileNumer(mobileNumber);
+            SetAddress(address);
+            SetPostCode(postCode);
+            SetCity(city);
+            SetDateOfBirth(dateOfBirth);
+            SetSitterProfileId(SitterProfileId);
+            SetProfilePhotoUrl(ProfilePhotoUrl);
         }
 
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
         public string Email { get; protected set; }
-        public string PasswordHash { get; protected set; }
-        public bool ConfirmedEmail { get; protected set; }
+        public int? MobileNumber { get; protected set; }
+        public string Address { get; protected set; }
+        public int PostCode { get; protected set; }
+        public string City { get; protected set; }
+        public DateTime DateOfBirth { get; protected set; }
+        public string? SitterProfileId { get; protected set; }
+        public string? ProfilePhotoUrl { get; protected set; }
 
         public void SetName(string firstName, string lastName)
         {
             ValidateIsNullOrWhiteSpace(firstName, "firstName");
             ValidateIsNullOrWhiteSpace(lastName, "lastName");
 
-            ValidateLength(firstName, "firstName", 50);
-            ValidateLength(lastName, "lastName", 50);
+            ValidateLength(firstName, "firstName", 20);
+            ValidateLength(lastName, "lastName", 20);
 
             FirstName = firstName;
             LastName = lastName;
@@ -48,21 +68,45 @@ namespace UserApi.Model
             Email = email;
         }
 
-        public void SetPasswordHash(string password)
+        public void SetMobileNumer(int? mobileNumber)
         {
-            ValidateIsNullOrWhiteSpace(password, "password");
-            var passwordHash = Validations.PasswordValidator.GeneratePassword(password);
-            if(string.IsNullOrWhiteSpace(passwordHash))
-            {
-                this.Errors.Add("Error, try a different password");
-            }
-
-            PasswordHash = passwordHash;
+            MobileNumber = mobileNumber;
         }
 
-        public void SetConfirmedEmail(bool isConfirmed)
+        public void SetAddress(string address)
         {
-            ConfirmedEmail = isConfirmed;
+            ValidateIsNullOrWhiteSpace(address, "address");
+            ValidateLength(address, "address", 50);
+            Address = address;
+        }
+
+        public void SetPostCode(int postCode)
+        {
+            PostCode = postCode;
+        }
+
+        public void SetCity(string city)
+        {
+            ValidateIsNullOrWhiteSpace(city, "city");
+            ValidateLength(city, "city", 20);
+            City = city;
+        }
+
+        public void SetDateOfBirth(DateTime dateOfBirth)
+        {
+            ValidateIsNullOrWhiteSpace(dateOfBirth.ToShortDateString(), "date of birth");
+            ValidateIsOfAge(dateOfBirth);
+            DateOfBirth = dateOfBirth;
+        }
+
+        public void SetSitterProfileId(string? sitterId)
+        {
+            SitterProfileId = sitterId;
+        }
+
+        public void SetProfilePhotoUrl(string? photoUrl)
+        {
+            ProfilePhotoUrl = photoUrl;
         }
 
         private void ValidateLength(string value, string property, int length)
@@ -77,6 +121,15 @@ namespace UserApi.Model
         private void ValidateIsNullOrWhiteSpace(string value, string property)
         {
             var error = StringValidator.ValidateIsNullOrWhiteSpace(value, property);
+            if (error != null)
+            {
+                this.Errors.Add(error);
+            }
+        }
+
+        private void ValidateIsOfAge(DateTime dateOfBirth)
+        {
+            var error = DateValidator.ValidateIsOfAge(dateOfBirth);
             if (error != null)
             {
                 this.Errors.Add(error);

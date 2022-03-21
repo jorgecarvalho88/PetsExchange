@@ -16,5 +16,20 @@
 
             return null;
         }
+
+        public static string? ValidateIsOfAge(DateTime? dateOfBirth)
+        {
+            if (dateOfBirth == null)
+            {
+                return "Invalid";
+            }
+
+            if (dateOfBirth?.AddYears(18) > DateTime.Now)
+            {
+                return "User must be +18";
+            }
+
+            return null;
+        }
     }
 }

@@ -36,7 +36,18 @@ namespace UserApi.Service
             }
 
             //create new user
-            var newUser = new User(user.FirstName, user.LastName, user.Email, user.Password);
+            var newUser = new User(
+                user.FirstName, 
+                user.LastName, 
+                user.Email,
+                user.MobileNumber,
+                user.Address,
+                user.PostCode,
+                user.City,
+                user.DateOfBirth,
+                user.SitterProfileId,
+                user.ProfilePhotoUrl
+                );
 
             //validate data is valid
             if (newUser.IsValid)
@@ -68,7 +79,6 @@ namespace UserApi.Service
             }
 
             existingUser.SetName(user.FirstName, user.LastName);
-            existingUser.SetPasswordHash(user.Password);
             existingUser.SetEmail(user.Email);
 
             if(!existingUser.IsValid)
@@ -114,7 +124,20 @@ namespace UserApi.Service
             {
                 return new UserContract() { Errors = new List<string>() { "User not found" } };
             }
-            return new UserContract(user.UniqueId, user.FirstName, user.LastName, user.PasswordHash, user.Email, user.Errors);
+            return new UserContract(
+                user.UniqueId, 
+                user.FirstName, 
+                user.LastName, 
+                user.Email, 
+                user.MobileNumber,
+                user.Address,
+                user.PostCode,
+                user.City,
+                user.DateOfBirth,
+                user.SitterProfileId,
+                user.ProfilePhotoUrl,
+                user.Errors
+                );
         }
         #endregion
     }

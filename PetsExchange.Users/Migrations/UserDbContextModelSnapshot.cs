@@ -17,7 +17,7 @@ namespace UserApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -30,29 +30,46 @@ namespace UserApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("ConfirmedEmail")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("char(9)");
+
+                    b.Property<string>("PostCode")
                         .IsRequired()
+                        .HasColumnType("char(7)");
+
+                    b.Property<string>("ProfilePhotoUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SitterProfileId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("UniqueId")
                         .HasColumnType("uniqueidentifier");
@@ -61,6 +78,14 @@ namespace UserApi.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("MobileNumber")
+                        .IsUnique()
+                        .HasFilter("[MobileNumber] IS NOT NULL");
+
+                    b.HasIndex("SitterProfileId")
+                        .IsUnique()
+                        .HasFilter("[SitterProfileId] IS NOT NULL");
 
                     b.HasIndex("UniqueId")
                         .IsUnique();

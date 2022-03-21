@@ -12,7 +12,16 @@ namespace UserApiUT
     public class UserRepositoryTests
     {
         private readonly UserDbContext context;
-        private User testUser = new User("Jorge", "Carvalho", "jorge@mail.com", "12345");
+        private User testUser = new User("Jorge", 
+            "Carvalho", 
+            "jorge@mail.com", 
+            null, 
+            "Rua de cima", 
+            4715011, 
+            "Braga", 
+            Convert.ToDateTime("30/10/1988"), 
+            null, 
+            null);
         public UserRepositoryTests()
         {
             DbContextOptionsBuilder dbOptions = new DbContextOptionsBuilder().UseInMemoryDatabase(

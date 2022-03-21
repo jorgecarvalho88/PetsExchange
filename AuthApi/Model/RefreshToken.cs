@@ -14,19 +14,18 @@ namespace AuthApi.Model
             )
         {
             SetUserId(userId);
-            SetToken();
             SetJwtId(jwtId);
             SetAddedDate();
             SetExpDate();
         }
 
-        public string UserId { get; set; }
-        public string Token { get; set; }
-        public string JwtId { get; set; }
-        public bool IsUsed { get; set; }
-        public bool IsRevoked { get; set; }
-        public DateTime AddedDate { get; set; }
-        public DateTime ExpDate { get; set; }
+        public string UserId { get; protected set; }
+        public string Token { get; protected set; }
+        public string JwtId { get; protected set; }
+        public bool IsUsed { get; protected set; }
+        public bool IsRevoked { get; protected set; }
+        public DateTime AddedDate { get; protected set; }
+        public DateTime ExpDate { get; protected set; }
 
         private void SetExpDate()
         {
@@ -43,9 +42,14 @@ namespace AuthApi.Model
             JwtId = jwtId;
         }
 
-        private void SetToken()
+        public void SetToken(string? token)
         {
             Token = RandomString(35) + Guid.NewGuid();
+        }
+
+        public void SetIsUsed()
+        {
+            IsUsed = true;
         }
 
         private void SetUserId(string userId)
