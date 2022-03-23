@@ -25,6 +25,18 @@ namespace PetsExchangeApi.Service.User
             return null;
         }
 
+        public async Task<UserDto> Get(string email)
+        {
+            var user = (await _userApiClient.GetUser(email)).Body;
+
+            if (user is not null)
+            {
+                return user.ToDto();
+            }
+
+            return null;
+        }
+
         public async Task<UserDto> Add(UserDto user)
         {
             if(user.IsValid)

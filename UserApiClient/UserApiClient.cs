@@ -17,7 +17,13 @@ namespace UserApiClient
 
         public async Task<ResponseResult<UserContract>> GetUser(Guid userId)
         {
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, _uri + "/" + userId.ToString());
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, _uri + "/id/" + userId.ToString());
+            return await HttpRequest<UserContract>(requestMessage);
+        }
+
+        public async Task<ResponseResult<UserContract>> GetUser(string email)
+        {
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, _uri + "/email/" + email);
             return await HttpRequest<UserContract>(requestMessage);
         }
 

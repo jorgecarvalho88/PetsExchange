@@ -43,18 +43,18 @@ namespace UserApiIT.StepDefinitions
             Assert.True(responseUser.IsValid);
         }
 
-        [Then(@"was created in database")]
-        public async Task ThenWasCreatedInDatabase()
-        {
-            var responseUser = _scenarioContext.Get<UserContract>("responseUser");
-            var client = _scenarioContext.Get<HttpClient>("httpClient");
-            var task = client.GetAsync($"User/{responseUser.UniqueId}");
-            var response = await task;
-            var responseContent = response.Content.ReadAsStringAsync().Result;
-            var userDb = JsonSerializer.Deserialize<UserContract>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        //[Then(@"was created in database")]
+        //public async Task ThenWasCreatedInDatabase()
+        //{
+        //    var responseUser = _scenarioContext.Get<UserContract>("responseUser");
+        //    var client = _scenarioContext.Get<HttpClient>("httpClient");
+        //    var task = client.GetAsync($"User/{responseUser.UniqueId}");
+        //    var response = await task;
+        //    var responseContent = response.Content.ReadAsStringAsync().Result;
+        //    var userDb = JsonSerializer.Deserialize<UserContract>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            responseUser.Should().BeEquivalentTo(userDb);
-        }
+        //    responseUser.Should().BeEquivalentTo(userDb);
+        //}
 
         [Then(@"the response content is invalid with error (.*)")]
         public void ThenTheFailResponseContentIsInvalid(string error)

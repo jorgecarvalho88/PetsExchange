@@ -19,6 +19,8 @@ namespace UserApiIT.StepDefinitions
         [Given(@"User endpoint is available")]
         public void GivenUserEndpointIsAvailable()
         {
+            //Assert.True(_scenarioContext.ContainsKey("httpClient"));
+
             var application = new WebApplicationFactory<Program>()
         .WithWebHostBuilder(builder =>
         {
@@ -42,10 +44,10 @@ namespace UserApiIT.StepDefinitions
         }
 
         [Then(@"I receive a response")]
-        public async Task ThenIReceiveAResponse()
+        public void ThenIReceiveAResponse()
         {
             var task = _scenarioContext.Get<Task<HttpResponseMessage>>("responseTask");
-            var response = await task;
+            var response = task.GetAwaiter().GetResult();
             _scenarioContext.Add("response", response);
         }
 

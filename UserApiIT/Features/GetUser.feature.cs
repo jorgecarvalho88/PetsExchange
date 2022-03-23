@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("User endpoint is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.When("I submit a GET request /User/4fffd014-fb5e-4809-b758-9de71b30e25f", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I submit a GET request /User/id/b125195a-691a-4b5c-bbe5-cd9ccf6565c7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 7
  testRunner.Then("I receive a response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the http response status is OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "UniqueId",
                             "FirstName",
                             "LastName",
@@ -133,19 +133,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "City",
                             "DateOfBirth",
                             "Errors"});
-                table4.AddRow(new string[] {
-                            "4fffd014-fb5e-4809-b758-9de71b30e25f",
-                            "jorge",
-                            "carvalho",
-                            "jorge@gmail.com",
-                            "918478026",
-                            "Rua Raul Gomes",
-                            "4715",
+                table5.AddRow(new string[] {
+                            "b125195a-691a-4b5c-bbe5-cd9ccf6565c7",
+                            "john",
+                            "doe",
+                            "john.doe@mail.com",
+                            "987654321",
+                            "Rua de tras",
+                            "4700010",
                             "Braga",
-                            "1988-10-30 00:22:10.2510000",
+                            "1980-03-22 22:11:10.1760000",
                             ""});
 #line 9
- testRunner.And("the success response content is", ((string)(null)), table4, "And ");
+ testRunner.And("the success response content is", ((string)(null)), table5, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -183,7 +183,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("User endpoint is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.When("I submit a GET request /User/f155650c-956e-48f2-8884-c4f42233a587", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I submit a GET request /User/id/f155650c-956e-48f2-8884-c4f42233a587", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
  testRunner.Then("I receive a response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -191,7 +191,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.And("the http response status is BadRequest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "UniqueId",
                             "FirstName",
                             "LastName",
@@ -202,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "City",
                             "DateOfBirth",
                             "Errors"});
-                table5.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "00000000-0000-0000-0000-000000000000",
                             "",
                             "",
@@ -214,7 +214,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "0001-01-01T00:00:00",
                             "User not found"});
 #line 18
- testRunner.And("the fail response content is", ((string)(null)), table5, "And ");
+ testRunner.And("the fail response content is", ((string)(null)), table6, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -16,10 +16,17 @@ namespace UserApi.Controllers
         }
 
         [HttpGet]
-        [Route("{uniqueId}")]
-        public IActionResult Get(Guid uniqueId)
+        [Route("id/{uniqueId}")]
+        public IActionResult GetById(Guid uniqueId)
         {
             return Ok(_userService.Get(uniqueId));
+        }
+
+        [HttpGet]
+        [Route("email/{email}")]
+        public IActionResult GetByEmail(string email)
+        {
+            return Ok(_userService.Get(email));
         }
 
         [HttpPost]

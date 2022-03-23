@@ -128,8 +128,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "test",
                             "user",
-                            "user@test.com",
-                            "918478026",
+                            "user.add@test.com",
+                            "914567894",
                             "Rua Raul Gomes",
                             "4715011",
                             "Braga",
@@ -146,9 +146,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 11
  testRunner.And("the response content is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And("was created in database", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -200,8 +197,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "test",
                             "user",
-                            "user@test.com",
-                            "918478026",
+                            "bad.user.add@test.co",
+                            "914568932",
                             "Rua Raul Gomes",
                             "4715011",
                             "Braga",
@@ -270,7 +267,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "test",
                             "user",
                             "jorge.com",
-                            "918478026",
+                            "918214796",
                             "Rua Raul Gomes",
                             "4715011",
                             "Braga",

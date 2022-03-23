@@ -17,10 +17,17 @@ namespace PetsExchangeApi.Controllers
         }
 
         [HttpGet]
-        [Route("{uniqueId}")]
-        public async Task<IActionResult> Get(Guid uniqueId)
+        [Route("id/{uniqueId}")]
+        public async Task<IActionResult> GetById(Guid uniqueId)
         {
             return Ok(await _userService.Get(uniqueId));
+        }
+
+        [HttpGet]
+        [Route("email/{email}")]
+        public async Task<IActionResult> GetByEmail(string email)
+        {
+            return Ok(await _userService.Get(email));
         }
 
         [HttpPost]

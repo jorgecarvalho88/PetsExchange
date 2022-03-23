@@ -19,7 +19,7 @@ namespace UserApiIT.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class DeleteUserProfileUsingUserApiFeature : object, Xunit.IClassFixture<DeleteUserProfileUsingUserApiFeature.FixtureData>, System.IDisposable
+    public partial class UpdateUserProfileUsingUserApiFeature : object, Xunit.IClassFixture<UpdateUserProfileUsingUserApiFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace UserApiIT.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "DeleteUser.feature"
+#line 1 "UpdateUser.feature"
 #line hidden
         
-        public DeleteUserProfileUsingUserApiFeature(DeleteUserProfileUsingUserApiFeature.FixtureData fixtureData, UserApiIT_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public UpdateUserProfileUsingUserApiFeature(UpdateUserProfileUsingUserApiFeature.FixtureData fixtureData, UserApiIT_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace UserApiIT.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Delete user profile using UserApi", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Update user profile using User Api", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,16 +80,16 @@ namespace UserApiIT.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Successfully delete the added user profile")]
-        [Xunit.TraitAttribute("FeatureTitle", "Delete user profile using UserApi")]
-        [Xunit.TraitAttribute("Description", "Successfully delete the added user profile")]
-        [Xunit.TraitAttribute("Category", "delete")]
-        public virtual void SuccessfullyDeleteTheAddedUserProfile()
+        [Xunit.SkippableFactAttribute(DisplayName="Successfully update a user profile")]
+        [Xunit.TraitAttribute("FeatureTitle", "Update user profile using User Api")]
+        [Xunit.TraitAttribute("Description", "Successfully update a user profile")]
+        [Xunit.TraitAttribute("Category", "update")]
+        public virtual void SuccessfullyUpdateAUserProfile()
         {
             string[] tagsOfScenario = new string[] {
-                    "delete"};
+                    "update"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfully delete the added user profile", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfully update a user profile", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
  testRunner.Given("User endpoint is available", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "UniqueId",
                             "FirstName",
                             "LastName",
@@ -124,30 +124,27 @@ this.ScenarioInitialize(scenarioInfo);
                             "City",
                             "DateOfBirth",
                             "Errors"});
-                table4.AddRow(new string[] {
-                            "",
-                            "test",
-                            "user",
-                            "user.delete@test.com",
-                            "935469874",
-                            "Rua Raul Gomes",
-                            "4715011",
+                table7.AddRow(new string[] {
+                            "b125195a-691a-4b5c-bbe5-cd9ccf6565c7",
+                            "jorge",
+                            "carvalho",
+                            "test@user.com",
+                            "987654321",
+                            "Rua de tras",
+                            "4700010",
                             "Braga",
-                            "1988-10-30 00:00:00.0000000",
+                            "1980-03-22 22:11:10.1760000",
                             ""});
 #line 6
- testRunner.And("User exists", ((string)(null)), table4, "And ");
+ testRunner.When("I submit a PUT request /User", ((string)(null)), table7, "When ");
 #line hidden
 #line 9
- testRunner.When("I submit a DELETE request /User?uniqueId=", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
  testRunner.Then("I receive a response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 10
  testRunner.And("the http response status is OK", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.And("the response content is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -161,12 +158,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                DeleteUserProfileUsingUserApiFeature.FeatureSetup();
+                UpdateUserProfileUsingUserApiFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                DeleteUserProfileUsingUserApiFeature.FeatureTearDown();
+                UpdateUserProfileUsingUserApiFeature.FeatureTearDown();
             }
         }
     }
