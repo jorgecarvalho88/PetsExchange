@@ -180,8 +180,6 @@ namespace AuthApi.Service.RefreshToken
                 _refreshTokenRepository.Create(newRefreshToken);
                 _refreshTokenRepository.Commit();
                 _refreshTokenRepository.CommitTransaction();
-
-                refreshToken.SetToken(newRefreshToken.Token);
             }
             else
             {

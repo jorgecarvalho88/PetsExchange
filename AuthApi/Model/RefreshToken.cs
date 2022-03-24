@@ -17,6 +17,7 @@ namespace AuthApi.Model
             SetJwtId(jwtId);
             SetAddedDate();
             SetExpDate();
+            SetToken();
         }
 
         public string UserId { get; protected set; }
@@ -42,7 +43,7 @@ namespace AuthApi.Model
             JwtId = jwtId;
         }
 
-        public void SetToken(string? token)
+        public void SetToken()
         {
             Token = RandomString(35) + Guid.NewGuid();
         }

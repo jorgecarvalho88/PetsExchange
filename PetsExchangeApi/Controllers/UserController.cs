@@ -1,4 +1,6 @@
 ﻿using ApiExtension;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetsExchangeApi.DTO;
 using PetsExchangeApi.Service.User;
@@ -7,6 +9,7 @@ namespace PetsExchangeApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UserController : ApiControllerBase
     {
         private IUserService _userService;
@@ -25,6 +28,7 @@ namespace PetsExchangeApi.Controllers
 
         [HttpGet]
         [Route("email/{email}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetByEmail(string email)
         {
             return Ok(await _userService.Get(email));
