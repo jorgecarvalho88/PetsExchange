@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AuthApiContract\AuthApiContract.csproj" />
+    <ProjectReference Include="..\ClientExtension\ClientExtension.csproj" />
+  </ItemGroup>
+
 </Project>

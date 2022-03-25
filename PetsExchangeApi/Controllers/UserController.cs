@@ -28,7 +28,6 @@ namespace PetsExchangeApi.Controllers
 
         [HttpGet]
         [Route("email/{email}")]
-        [AllowAnonymous]
         public async Task<IActionResult> GetByEmail(string email)
         {
             return Ok(await _userService.Get(email));

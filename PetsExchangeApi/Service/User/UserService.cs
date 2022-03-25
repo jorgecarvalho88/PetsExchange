@@ -13,6 +13,7 @@ namespace PetsExchangeApi.Service.User
         {
             _userApiClient = userApiClient;
         }
+
         public async Task<UserDto?> Get(Guid uniqueId)
         {
             var user = (await _userApiClient.GetUser(uniqueId)).Body;

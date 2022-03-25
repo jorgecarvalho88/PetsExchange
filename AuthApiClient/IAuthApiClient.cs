@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AuthApiContract;
+using ClientExtension;
 
 namespace AuthApiClient
 {
-    internal interface IAuthApiClient
+    public interface IAuthApiClient
     {
+        Task<ResponseResult<AuthResultApiContract>> Register(RegistrationApiContract userRegistrationDto);
+        Task<ResponseResult<AuthResultApiContract>> Login(LoginApiContract userLoginDto);
+        Task<ResponseResult<AuthResultApiContract>> RefreshToken(AuthResultApiContract authResultDto);
     }
 }

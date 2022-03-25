@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApiExtension\ApiExtension.csproj" />
+    <ProjectReference Include="..\AuthApiClient\AuthApiClient.csproj" />
     <ProjectReference Include="..\DataExtension\DataExtension.csproj" />
     <ProjectReference Include="..\UserApiClient\UserApiClient.csproj" />
     <ProjectReference Include="..\UserApiContract\UserApiContract.csproj" />

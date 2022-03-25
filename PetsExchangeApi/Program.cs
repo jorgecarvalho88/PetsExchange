@@ -1,5 +1,7 @@
+using AuthApiClient;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using PetsExchangeApi.Service.Auth;
 using PetsExchangeApi.Service.User;
 using System.Text;
 using UserApiClient; 
@@ -15,6 +17,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IUserApiClient, UserApiClient.UserApiClient>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IAuthApiClient, AuthApiClient.AuthApiClient>();
 
 // converte secret key no appsetting.json para Bytes
 var key = Encoding.ASCII.GetBytes(builder.Configuration["JwtConfig:Secret"]);
