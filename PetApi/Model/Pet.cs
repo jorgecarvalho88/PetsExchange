@@ -5,14 +5,14 @@ namespace PetApi.Model
 {
     public class Pet : BaseEntity
     {
-        private List<string> _petTypes = new List<string>() { "dog", "cat"};
+        //private List<string> _petTypes = new List<string>() { "dog", "cat"};
 
         public Pet()
         {}
 
         public Pet(
-            string petType,
-            string breedId,
+            //string petType,
+            Breed breed,
             string name,
             string sex,
             decimal weight,
@@ -24,8 +24,8 @@ namespace PetApi.Model
             string description,
             string? observations)
         {
-            SetPetType(petType);
-            //SetBreedId(breed);
+            //SetPetType(petType);
+            SetBreed(breed);
             SetName(name);
             SetSex(sex);
             SetWeight(weight);
@@ -38,18 +38,18 @@ namespace PetApi.Model
             SetObservations(observations);
         }
 
-        private void SetPetType(string petType)
-        {
-            ValidateIsNullOrWhiteSpace(petType, "pet type");
-            ValidatePetType(petType);
-
-            PetType = petType;
-        }
-
-        //private void SetBreedId(Breed breed)
+        //private void SetPetType(string petType)
         //{
-        //    Breed = breed;
+        //    ValidateIsNullOrWhiteSpace(petType, "pet type");
+        //    ValidatePetType(petType);
+
+        //    PetType = petType;
         //}
+
+        private void SetBreed(Breed breed)
+        {
+            Breed = breed;
+        }
 
         private void SetName(string name)
         {
@@ -109,8 +109,8 @@ namespace PetApi.Model
         }
 
 
-        public string PetType { get; protected set; }
-        //public virtual Breed Breed { get; protected set; }
+        //public string PetType { get; protected set; }
+        public virtual Breed Breed { get; protected set; }
         public string Name { get; protected set; }
         public string Sex { get; protected set; }
         public decimal Weight { get; protected set; }
@@ -142,13 +142,13 @@ namespace PetApi.Model
             }
         }
 
-        private void ValidatePetType(string petType)
-        {
-            if(!_petTypes.Contains(petType))
-            {
-                this.Errors.Add($"Pet type can only be {String.Join(",", _petTypes)}");
-            }
-        }
+        //private void ValidatePetType(string petType)
+        //{
+        //    if(!_petTypes.Contains(petType))
+        //    {
+        //        this.Errors.Add($"Pet type can only be {String.Join(",", _petTypes)}");
+        //    }
+        //}
 
         private void ValidateSexConstraint(string sex)
         {
