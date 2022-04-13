@@ -5,14 +5,12 @@ namespace PetApi.Model
 {
     public class Pet : BaseEntity
     {
-        //private List<string> _petTypes = new List<string>() { "dog", "cat"};
-
         public Pet()
         {}
 
         public Pet(
-            //string petType,
             Breed breed,
+            Guid owner,
             string name,
             string sex,
             decimal weight,
@@ -24,8 +22,8 @@ namespace PetApi.Model
             string description,
             string? observations)
         {
-            //SetPetType(petType);
             SetBreed(breed);
+            SetOwner(owner);
             SetName(name);
             SetSex(sex);
             SetWeight(weight);
@@ -38,79 +36,83 @@ namespace PetApi.Model
             SetObservations(observations);
         }
 
-        //private void SetPetType(string petType)
-        //{
-        //    ValidateIsNullOrWhiteSpace(petType, "pet type");
-        //    ValidatePetType(petType);
-
-        //    PetType = petType;
-        //}
-
-        private void SetBreed(Breed breed)
+        public void SetBreed(Breed breed)
         {
+            if(breed is null)
+            {
+                this.Errors.Add("Breed is not valid");
+            }
             Breed = breed;
         }
+        public void SetOwner(Guid owner)
+        {
+            if (owner == new Guid())
+            {
+                this.Errors.Add("Owner must be valid");
+            }
 
-        private void SetName(string name)
+            Owner = owner;
+        }
+        
+        public void SetName(string name)
         {
             ValidateIsNullOrWhiteSpace(name, "name");
             Name = name;
         }
-
-        private void SetSex(string sex)
+        
+        public void SetSex(string sex)
         {
             ValidateIsNullOrWhiteSpace(sex, "sex");
             ValidateSexConstraint(sex);
             Sex = sex;
         }
-
-        private void SetWeight(decimal weight)
+        
+        public void SetWeight(decimal weight)
         {
             if (weight < 0) this.Errors.Add("Weigth cant be negative");
             Weight = weight;
         }
-
-        private void SetMicroShiped(bool microshiped)
+        
+        public void SetMicroShiped(bool microshiped)
         {
             MicroChiped = microshiped;
         }
-
-        private void SetNeutered(bool neutered)
+        
+        public void SetNeutered(bool neutered)
         {
             Neutered = neutered;
         }
-
-        private void SetTrained(bool trained)
+        
+        public void SetTrained(bool trained)
         {
             Trained = trained;
         }
-
-        private void SetFriendlyAroundDogs(bool friendlyAroundDogs)
+        
+        public void SetFriendlyAroundDogs(bool friendlyAroundDogs)
         {
             FriendlyAroundDogs = friendlyAroundDogs;
         }
-
-        private void SetFriendlyAroundCats(bool friendlyAroundCats)
+        
+        public void SetFriendlyAroundCats(bool friendlyAroundCats)
         {
             FriendlyAroundCats = friendlyAroundCats;
         }
-
-        private void SetDescription(string description)
+        
+        public void SetDescription(string description)
         {
             ValidateIsNullOrWhiteSpace(description, "description");
             ValidateLength(description, "description", 500);
             Description = description;
         }
-
-        private void SetObservations(string? observations)
+        
+        public void SetObservations(string? observations)
         {
             if(observations is not null) ValidateLength(observations, "observations", 500);
             Observations = observations;
         }
 
-
-        //public string PetType { get; protected set; }
         public virtual Breed Breed { get; protected set; }
+        public Guid Owner { get; protected set; }
         public string Name { get; protected set; }
         public string Sex { get; protected set; }
         public decimal Weight { get; protected set; }
@@ -141,14 +143,6 @@ namespace PetApi.Model
                 this.Errors.Add(error);
             }
         }
-
-        //private void ValidatePetType(string petType)
-        //{
-        //    if(!_petTypes.Contains(petType))
-        //    {
-        //        this.Errors.Add($"Pet type can only be {String.Join(",", _petTypes)}");
-        //    }
-        //}
 
         private void ValidateSexConstraint(string sex)
         {

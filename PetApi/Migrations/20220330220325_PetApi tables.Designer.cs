@@ -12,8 +12,8 @@ using PetApi.Infrastructure;
 namespace PetApi.Migrations
 {
     [DbContext(typeof(PetDbContext))]
-    [Migration("20220326152126_Create Tables")]
-    partial class CreateTables
+    [Migration("20220330220325_PetApi tables")]
+    partial class PetApitables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,6 +97,9 @@ namespace PetApi.Migrations
                     b.Property<string>("Observations")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("Owner")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Sex")
                         .IsRequired()

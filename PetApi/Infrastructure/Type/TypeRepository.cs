@@ -9,9 +9,14 @@ namespace PetApi.Infrastructure.Type
 
         }
 
+        public IQueryable<Model.Type> Get()
+        {
+            return base.GetQueryable<Model.Type>();
+        }
+
         public Model.Type Get(Guid uniqueId)
         {
-            throw new NotImplementedException();
+            return Get().Where(t => t.UniqueId == uniqueId).FirstOrDefault();
         }
     }
 }

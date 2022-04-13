@@ -96,6 +96,9 @@ namespace PetApi.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<Guid>("Owner")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Sex")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

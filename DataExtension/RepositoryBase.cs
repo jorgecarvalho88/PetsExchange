@@ -6,15 +6,15 @@ namespace DataExtension
     {
         private DbContext context;
 
-        public void BeginTransaction()
-        {
-            context.Database.BeginTransaction();
-        }
-
         public RepositoryBase(DbContext context)
         {
             this.context = context;
         }
+
+        public void BeginTransaction()
+        {
+            context.Database.BeginTransaction();
+        }     
 
         public TEntity Create<TEntity>(TEntity entity) where TEntity : class
         {

@@ -27,7 +27,7 @@ namespace UserApi.Service
             _userRepository.BeginTransaction();
 
             //validate user exists
-            var existingsUser = _userRepository.Get(user.UniqueId);
+            var existingsUser = _userRepository.Get(user.Email);
             if(existingsUser is not null)
             {
                 _userRepository.RollBackTransaction();

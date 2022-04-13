@@ -6,5 +6,6 @@ namespace PetApi.Infrastructure.Breed
     {
         Model.Breed Get(Guid breedId);
         Model.Breed Get(string breedName);
+        Model.Type GetType(Guid typeId);
     }
 }

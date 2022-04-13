@@ -18,6 +18,9 @@ namespace PetApi.Infrastructure.Type
                 entity.Property(o => o.UniqueId).IsRequired();
 
                 entity.HasIndex(u => u.UniqueId).IsUnique();
+
+                //entity.HasData(new Model.Type("Dog"));
+                //entity.HasData(new Model.Type("Cat"));
             });
         }
     }

@@ -22,13 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Service\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\ApiExtension\ApiExtension.csproj" />
     <ProjectReference Include="..\DataExtension\DataExtension.csproj" />
+    <ProjectReference Include="..\PetApiContract\PetApiContract.csproj" />
   </ItemGroup>
 
 </Project>

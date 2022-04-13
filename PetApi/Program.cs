@@ -3,6 +3,9 @@ using PetApi.Infrastructure;
 using PetApi.Infrastructure.Breed;
 using PetApi.Infrastructure.Pet;
 using PetApi.Infrastructure.Type;
+using PetApi.Service.Breed;
+using PetApi.Service.Pet;
+using PetApi.Service.Type;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IPetRepository, PetRepository>();
-//builder.Services.AddTransient<IPetService, UserRepository>();
+builder.Services.AddTransient<IPetService, PetService>();
 builder.Services.AddTransient<IBreedRepository, BreedRepository>();
-//builder.Services.AddTransient<IBreedService, BreedService>();
+builder.Services.AddTransient<IBreedService, BreedService>();
 builder.Services.AddTransient<ITypeRepository, TypeRepository>();
-//builder.Services.AddTransient<ITypeService, TypeService>();
+builder.Services.AddTransient<ITypeService, TypeService>();
 
 builder.Services.AddDbContext<PetDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:sqlConnection").Value));
